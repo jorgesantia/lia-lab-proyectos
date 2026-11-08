@@ -2,29 +2,29 @@
 
 ## 1. Mi flujo con las cinco piezas de la plantilla (lectura 6.1)
 
-- Disparador (¿cuándo arranca?): todos los lunes a las 9:05, una vez que los tres vendedores enviaron sus reportes (deben llegar antes de las 9:00). Si el lunes es festivo, arranca el primer día hábil siguiente a la misma hora. No es "cuando se pueda": es un horario escrito.
-- Registro (¿dónde queda?): una hoja de cálculo compartida con tres pestañas fijas, una por vendedor. Lo que reciben por correo o chat se pega ahí como texto crudo y la IA trabaja sobre esa hoja; el crudo nunca se edita, queda como evidencia.
-- Decisión (¿qué regla corrige?): el criterio de venta: cuenta solo lo facturado dentro de la semana que se reporta (lunes a domingo anterior); NO cuentan pedidos cancelados, cotizaciones ni folios repetidos. La IA debe marcar en una columna extra: "cuenta / no cuenta + motivo". Casos que no se resuelven solos y pasan a Ana: folios con estatus ambiguo (por ejemplo "proceso de cierre" que podría facturar antes del reporte), cifras que no cuadren entre total y detalles, y cualquier dato faltante del vendedor.
-- Respuesta (¿qué entrega?): un borrador del reporte para el Director Comercial que llega a Ana a las 10:15. Ana lo revisa y lo manda con su visto bueno antes de las 11:00. La IA nunca manda al director directamente: Ana aprueba porque si la IA se equivoca en una cifra sería un error ante dirección y el criterio de negocio es de Ana.
-- Evidencia (¿qué queda guardado?): la hoja con el texto crudo, la columna de decisión "cuenta / no cuenta" con motivo, y el borrador final enviado. Cada domingo revisa la evidencia Ana: compara muestras de 2 folios por vendedor contra el sistema de facturación una vez por semana y el mes completo al cierre del mes.
+- Disparador: todos los lunes a las 9:05, una vez que los tres vendedores enviaron su reporte (deben llegar antes de las 9:00). Si el lunes es festivo, arranca el primer día hábil siguiente a la misma hora. No es "cuando se pueda": es un horario escrito.
+- Registro: una hoja de cálculo compartida con tres pestañas, una por vendedor. Lo que llega por correo o chat se pega ahí como texto crudo y la IA trabaja sobre esa hoja; el texto crudo nunca se edita, queda como evidencia.
+- Decisión: la regla de qué cuenta es una venta: solo lo FACTURADO dentro de la semana que se reporta (lunes a domingo anterior); no cuentan pedidos cancelados, cotizaciones ni folios repetidos. La IA marca en una columna extra "cuenta / no cuenta" con motivo. Los casos que no se resuelven solos y suben a Ana: estatus ambiguos (por ejemplo un "proceso de cierre" que podría facturar antes del domingo), cifras donde el total no cuadra con el detalle, y datos faltantes del vendedor.
+- Respuesta: un borrador del reporte para el Director Comercial que la IA entrega a Ana a las 10:15; Ana lo revisa y lo envía antes de las 11:00 con su nombre. La IA nunca escribe al director directamente: una cifra mal en dirección cuesta caro y el criterio final es de Ana.
+- Evidencia: la hoja con el texto crudo, la decisión folio por folio con su motivo y el borrador aprobado. La revisa Ana: 2 folios al azar por vendedor cada semana (5 minutos) y el mes completo al cierre de mes.
 
 ## 2. Lo que no delegaría y por qué
 
-- La decisión final de qué entra al reporte frente a casos raros: los ambigüedades pidon criterio de negocio.
-- El mensaje al director: una cifra malconvocada ahí tiene costo alto ypolitico; solo Ana comunica y explica.
-- Hablar con los vendedores cuando el reporte no llega a las 9:00: pedir y hacer seguimiento es responsabilidad de Ana y así evita que la IA dispara correos solos "presionando" al equipo.
-- Lo que delego con gusto: extraer y ordenar los datos, detectar duplicados, calcular porcentajes y preparar el borrador con la nota de exclusión.
+- La decisión final del reporte y la comunicación con el director: ahí el costo del error es alto y es un mensaje con el nombre de Ana.
+- La creación de criterios (qué entra y qué no) cuando hay casos raros: eso es negocio, no cálculo.
+- El seguimiento a los vendedores si un reporte no llega a las 9:00: pedirlos es responsabilidad de Ana y evita que un bot mande correos de presión por su cuenta.
 
 ## 3. Mi prueba con los datos de este lunes
 
-Criterio dado a la IA: cuenta solo lo "Facturado"; excluye cancelados, cotizaciones y folios repetidos; si el vendedor envía dos veces el mismo folio, cuenta una; las cifras "en proceso de cierre" no cuentan si no están facturadas.
+Instrucción dada a la IA: cuenta solo lo facturado en la semana; excluye cancelados, cotizaciones y folios repetidos (cuenta una vez aunque esté pegado dos veces); lo que no esté facturado no entra; calcula todo folio por folio, no desde el total del vendedor.
 
-Lo que entregó la IA:
-- Beto Ríos: cuenta F-1041 (12,400), F-1042 (18,900) y F-1045 (27,300). Excluye F-1044 por estar Cancelado. Ventas facturadas: $58,600 = 97.7% de su meta de $60,000. (El total que escribió Beto, $68,100, era sumando el pedido cancelado). ✔ correcto
-- Carla Núñez: cuenta F-2210 (31,000), F-2211 (22,500, capturado dos veces: cuenta una) y F-2213 (15,800). Excluye la copia repetida de F-2211. Ventas facturadas: $69,300 = 115.5% de la meta. (El total de Carla, $91,800, era sumando el duplicado por $22,500). ✔ correcto
-- Mauricio Pérez: cuenta lo facturado: Papelería Central 24.5 + Cafetería Roma 17.2 = $41,700 = 69.5% de la meta. Excluye Hoteles del Valle (33.0) porque está "en proceso de cierre": la regla sin factura no cuenta; si factura antes del domingo, entra la semana que viene. ✔ correcto
-- Equipo: 58,600 + 69,300 + 41,700 = $169,600 = 94.2% de la meta de $180,000.
+El borrador que entregó la IA:
+- Beto Ríos: cuentan F-1041 ($12,400), F-1042 ($18,900) y F-1045 ($27,300). No cuenta F-1044 por estar Cancelado. Total facturado: $58,600 = 97.7% de su meta de $60,000. (El total que envió Beto, $68,100, sumaba el pedido cancelado.)
+- Carla Núñez: cuentan F-2210 ($31,000), F-2211 ($22,500, capturado dos veces: cuenta una) y F-2213 ($15,800). Total facturado: $69,300 = 115.5% de la meta. (El total de Carla, $91,800, sumaba el duplicado.)
+- Mauricio Pérez: cuentan lo facturado: Papelería Central $24.5k + Cafetería Roma $17.2k = $41,700 = 69.5% de la meta. No cuenta Hoteles del Valle ($33.0k) porque está "en proceso de cierre" y aún no está facturado; si se factura antes del domingo, entra a la semana siguiente.
+- Equipo: $58,600 + $69,300 + $41,700 = $169,600 = 94.2% de la meta del equipo de $180,000.
+- Nota de exclusiones (el reporte debe llevarla): cancelado (F-1044), folio duplicado (copia de F-2211) y facturación pendiente (Hoteles del Valle).
 
-## 4. ¿Qué comparar y qué corregí?
+## 4. Mi revisión (qué comparé y qué corregí)
 
-Comparé cada folio con el criterio de facturación y encontré un problema en mis instrucciones oriiginles y otro en los reportes: (1) mi primer prompt a la IA decía "súmate los totales que trae cada vendedor", la IA con esa instrucción repetía los totales mal con los que ya servíamos; corregí y ahora se calcula desde folio por folio. (2) el total de Beto sumaba un pedido cancelado y el de Carla sumaba su folio duplicado: ambos quedan notados en la nota de exclusiones del reporte, y con eso el reporte queda listo para revisión de Ana antes de las 11:00.
+Comparé folio por folio contra el criterio y encontré dos cosas concretas: (1) mi primera instrucción a la IA decía "súmale los totales que traen los vendedores" y con eso la IA repetía los totales malos de Beto y de Carla: lo corregí a calcular folio por folio; (2) el total de Beto incluía un pedido cancelado y el de Carla su folio duplicado: ambos quedaron documentados en la nota de exclusiones, que es lo que pide el formato del reporte. Con el borrador marcado como "aprobado por Ana", queda listo para las 11:00.
